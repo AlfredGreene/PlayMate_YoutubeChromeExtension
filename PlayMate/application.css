@@ -1,0 +1,23 @@
+.center {
+  /*text-align: center;
+  margin: auto;
+  width: 200px;*/
+}
+
+.center-div {
+  width:60%;
+  margin: 0 auto;
+  border: 2px solid maroon;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: -2px 2px 2px #666;
+  align: center;
+}
+input {
+  display: block;
+  margin-top: 5px;
+}
+
+input.text {
+  width: 60%;
+}
