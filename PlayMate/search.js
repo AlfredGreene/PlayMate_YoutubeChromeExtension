@@ -1,5 +1,5 @@
 $(document).ready(function(){
-  $('#search').submit(function(e){
+  $('form').submit(function(e){
     e.preventDefault();
     $(search());
   });
@@ -29,12 +29,16 @@ function search() {
   request.execute(function(response) {
     console.log(response);
     var str = JSON.stringify(response.result);
-    $('body').html('<pre>' + str + '</pre>');
+    // $('body').html('<pre>' + str + '</pre>');
     response.items.forEach(function(item) {
-      var id = item.snippet.channelId;
+      var video_id = item.id.videoId;
+      var channel_id = item.id.channel_id;
       var imgSrc = item.snippet.thumbnails.default.url;
-
-      $('body').append('<a href="https://www.youtube.com/watch?v=' + id + '"><img src="' + imgSrc + '"></a>');
+      if (channel_id) {
+      $('#response').append('<a href="https://www.youtube.com/' + channel_id + '"><img src="' + imgSrc + '"></a>');
+      } else {
+      }
+      $('#response').append('<a href="https://www.youtube.com/watch?v=' + video_id + '"><img src="' + imgSrc + '"></a>');
     })
   });
 };
@@ -42,6 +46,7 @@ function search() {
 function onSearchResponse(response) {
 
 };
+
 // function init() {
 //   gapi.client.setApiKey('AIzaSyAw42x_-zvJ-3PhIEkIC6M1MXjeddXAkFg');
 //   gapi.client.load("youtube", "v3", function(){
