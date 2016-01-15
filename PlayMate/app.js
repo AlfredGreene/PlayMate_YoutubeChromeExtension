@@ -4,7 +4,7 @@ var songList= [];
 var player, currentVideoId = 0;
 
 function onYouTubeIframeAPIReady() {
-    player = new YT.Player('player', {
+    player = new YT.Player('.right-hand', {
         height: '350',
         width: '425',
         events: {
