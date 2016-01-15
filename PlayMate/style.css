@@ -19,6 +19,19 @@ form, #results { padding: 0 20px; }
 .right-hand{
   float: right;
   width: 48%;
+  padding-right: 20px;
+}
+
+.left-hand:after {
+  content: '';
+  width: 48%;
+  height: 100%;
+  position: absolute;
+  border-bottom-style: none;
+  border-right: solid;
+  top: 0;
+  z-index: -1;
+  vertical-align: center;
 }
 
 .center-div {
