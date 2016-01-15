@@ -1,5 +1,32 @@
 function tplawesome(e,t){res=e;for(var n=0;n<t.length;n++){res=res.replace(/\{\{(.*?)\}\}/g,function(e,r){return t[n][r]})}return res}
 
+var songList= [];
+var player, currentVideoId = 0;
+
+function onYouTubeIframeAPIReady() {
+    player = new YT.Player('.right-hand', {
+        height: '350',
+        width: '425',
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+function onPlayerReady(event) {
+    event.target.loadVideoById(videoIDs[currentVideoId]);
+}
+
+function onPlayerStateChange(event) {
+    if (event.data == YT.PlayerState.ENDED) {
+        currentVideoId++;
+        if (currentVideoId < videoIDs.length) {
+            player.loadVideoById(videoIDs[currentVideoId]);
+        }
+    }
+}
+
 $(document).ready(function(){
   $('#results').on('click', 'button', function(e){
     e.preventDefault();
@@ -9,8 +36,9 @@ $(document).ready(function(){
     $(button).remove();
     $(rightPlace).remove();
     $(".right-hand").append(rightPlace)
-
-
+    var individualId = $(this).attr('data-videoID');
+    songList.push(individualId);
+    console.log(songList);
 
   });
 
