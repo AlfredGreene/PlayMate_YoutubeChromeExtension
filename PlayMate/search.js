@@ -34,11 +34,28 @@ function search() {
       var video_id = item.id.videoId;
       var channel_id = item.id.channel_id;
       var imgSrc = item.snippet.thumbnails.default.url;
+      var title = item.snippet.title;
+
+
+      var source   = $("#video-template").html();
+      // var video = "<iframe class='video w100' width='640' height='360' src='www.youtube.com/embed/'" + video_id + "frameborder='0' allowfullscreen></iframe>"
+
+      var template = Handlebars.compile(source);
+
+      var data = {
+        "video_id": video_id,
+        "title": title
+      };
+
+      var compiledHTML = template(data);
+
       if (channel_id) {
       $('#response').append('<a href="https://www.youtube.com/' + channel_id + '"><img src="' + imgSrc + '"></a>');
-      } else {
       }
-      $('#response').append('<a href="https://www.youtube.com/watch?v=' + video_id + '"><img src="' + imgSrc + '"></a>');
+
+      console.log(compiledHTML);
+      // var data = '<a href="https://www.youtube.com/watch?v=' + video_id + '"><img src="' + imgSrc + '"></a>';
+      $("#content-placeholder").html(compiledHTML);
     })
   });
 };
